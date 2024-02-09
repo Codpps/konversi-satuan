@@ -1,0 +1,79 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Konversi Panjang</title>
+    <link rel="stylesheet" href="CSS/style.css" type="text/css" media="all" />
+  </head>
+
+  <body>
+    <nav class="navbar">
+      <div class="nav-item"><a href="index.html">Jarak</a></div>
+      <div class="nav-item"><a href="berat.html">Berat</a></div>
+      <div class="nav-item"><a href="volume.html">Volume</a></div>
+    </nav>
+    <div class="card">
+      <form>
+        <label for="distance">Masukkan Jarak:</label>
+        <input type="number" id="distance" name="distance" />
+        <br />
+        <div class="selects">
+          <label for="fromUnit">Dari :</label>
+          <select id="fromUnit" name="fromUnit">
+            <option value="km">KM</option>
+            <option value="hm">HM</option>
+            <option value="dam">DAM</option>
+            <option value="m">M</option>
+            <option value="dm">DM</option>
+            <option value="cm">CM</option>
+            <option value="mm">MM</option>
+          </select>
+          <label for="toUnit">Ke Satuan:</label>
+          <select id="toUnit" name="toUnit">
+            <option value="km">KM</option>
+            <option value="hm">HM</option>
+            <option value="dam">DAM</option>
+            <option value="m">M</option>
+            <option value="dm">DM</option>
+            <option value="cm">CM</option>
+            <option value="mm">MM</option>
+          </select>
+        </div>
+        <br />
+        <button type="button" onclick="convertLength()">Konversi</button>
+      </form>
+    </div>
+
+    <script>
+      function convertLength() {
+        const distance = parseFloat(document.getElementById("distance").value);
+        const fromUnit = document
+          .getElementById("fromUnit")
+          .value.toLowerCase();
+        const toUnit = document.getElementById("toUnit").value.toLowerCase();
+
+        const units = {
+          km: 1000,
+          hm: 100,
+          dam: 10,
+          m: 1,
+          dm: 0.1,
+          cm: 0.01,
+          mm: 0.001,
+        };
+
+        if (
+          isNaN(distance) ||
+          units[fromUnit] === undefined ||
+          units[toUnit] === undefined
+        ) {
+          alert("Masukan tidak valid.");
+        } else {
+          const convertedDistance =
+            (distance * units[fromUnit]) / units[toUnit];
+          alert(`Hasil konversi: ${convertedDistance}`);
+        }
+      }
+    </script>
+  </body>
+</html>

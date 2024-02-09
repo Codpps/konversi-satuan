@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Konversi Berat</title>
+    <link rel="stylesheet" href="CSS/style.css" type="text/css" media="all" />
+  </head>
+
+  <body>
+    <nav class="navbar">
+      <div class="nav-item"><a href="index.html">Jarak</a></div>
+      <div class="nav-item"><a href="berat.html">Berat</a></div>
+      <div class="nav-item"><a href="volume.html">Volume</a></div>
+    </nav>
+    <div class="card">
+      <form>
+        <label for="weight">Masukkan Volume:</label>
+        <input type="number" id="weight" name="weight" />
+        <br />
+        <div class="selects">
+          <label for="fromUnit">Dari :</label>
+          <select id="fromUnit" name="fromUnit">
+            <option value="kℓ">Kℓ</option>
+            <option value="hℓ">Hℓ</option>
+            <option value="daℓ">DAℓ</option>
+            <option value="ℓ">ℓ</option>
+            <option value="dℓ">Dℓ</option>
+            <option value="cℓ">Cℓ</option>
+            <option value="mℓ">Mℓ</option>
+          </select>
+          <label for="toUnit">Ke Satuan:</label>
+          <select id="toUnit" name="toUnit">
+            <option value="kℓ">Kℓ</option>
+            <option value="hℓ">Hℓ</option>
+            <option value="daℓ">DAℓ</option>
+            <option value="ℓ">ℓ</option>
+            <option value="dℓ">Dℓ</option>
+            <option value="cℓ">Cℓ</option>
+            <option value="mℓ">Mℓ</option>
+          </select>
+        </div>
+        <br />
+        <button type="button" onclick="convertWeight()">Konversi</button>
+      </form>
+    </div>
+
+    <script>
+      function convertWeight() {
+        const weight = parseFloat(document.getElementById("weight").value);
+        const fromUnit = document
+          .getElementById("fromUnit")
+          .value.toLowerCase();
+        const toUnit = document.getElementById("toUnit").value.toLowerCase();
+
+        const units = {
+          kℓ: 1000,
+          hℓ: 100,
+          daℓ: 10,
+          ℓ: 1,
+          dℓ: 0.1,
+          cℓ: 0.01,
+          mℓ: 0.001,
+        };
+
+        if (
+          isNaN(weight) ||
+          units[fromUnit] === undefined ||
+          units[toUnit] === undefined
+        ) {
+          alert("Masukan tidak valid.");
+        } else {
+          const convertedWeight = (weight * units[fromUnit]) / units[toUnit];
+          alert(`Hasil konversi: ${convertedWeight}`);
+        }
+      }
+    </script>
+  </body>
+</html>
